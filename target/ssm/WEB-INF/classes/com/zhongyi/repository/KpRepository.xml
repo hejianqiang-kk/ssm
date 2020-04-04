@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongyi.repository.KpRepository">
+    <select id="findAll" resultType="com.zhongyi.entity.Kp">
+        select * from kp
+    </select>
+    <insert id="save" parameterType="com.zhongyi.entity.Kp">
+        insert  into kp(id,name,data,srouce)values(#{id},#{name},#{data},#{srouce})
+    </insert>
+    <update id="update" parameterType="com.zhongyi.entity.Kp" >
+        update kp
+        <set>
+            <if test="name!=null">name = #{name},
+            </if>
+            <if test="data!=null">data = #{data},
+            </if>
+            <if test="srouce!=null">srouce = #{srouce}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from kp where id=#{id}
+    </delete>
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.zhongyi.entity.Kp">
+        select * from kp where id=#{id}
+    </select>
+</mapper>
